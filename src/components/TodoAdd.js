@@ -5,7 +5,7 @@ import 'firebase/compat/firestore';
 
 
 import { projectFirestore, timeStamp} from '../firebase/config.js';
-import { useState} from 'react/cjs/react.development';
+import { useState} from 'react';
 
 
 function TodoAdd({setAdd, todos}) {
