@@ -1,0 +1,64 @@
+.todoheader {
+  padding: 25px;
+  margin: 25px;
+}
+
+.todoheader .todolist__tag {
+  display: -ms-grid;
+  display: grid;
+  margin: auto;
+  width: 70%;
+  -ms-grid-columns: 2fr 1fr 1fr 2fr;
+      grid-template-columns: 2fr 1fr 1fr 2fr;
+}
+
+.todoheader .todolist__tag .header__tag p i {
+  cursor: pointer;
+}
+
+.todoheader .todolist__tag .tag__status {
+  margin-left: 5%;
+}
+
+.todoheader .todolist__tag .tag__priority {
+  margin-left: -15%;
+}
+
+.todoheader .todolist__tag .tag__deadline {
+  margin-left: -5%;
+}
+
+.todoheader h1 {
+  font-size: 30px;
+  margin: 10px;
+}
+
+.todoheader__function {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-bottom: 2px solid bisque;
+  padding: 20px;
+  margin: 20px;
+}
+
+.todoheader__function .function__add button {
+  background-color: #fff;
+  border-radius: 25px;
+}
+
+@font-face {
+  font-family: "FontAwesome";
+  font-weight: normal;
+  font-style: normal;
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot");
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.eot") format("embedded-opentype"), url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2") format("woff2"), url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff") format("woff"), url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf") format("truetype"), url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.svg") format("svg");
+}
+
+select {
+  font-family: FontAwesome;
+}
+/*# sourceMappingURL=style.css.map */
