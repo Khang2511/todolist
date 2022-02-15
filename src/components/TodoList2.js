@@ -1,6 +1,7 @@
 import React from 'react';
 import '../css/listStyle/style.css'
-import {useState,useEffect} from 'react'
+import {useState} from 'react'
+// import { useEffect } from 'react';
 import { projectFirestore } from '../firebase/config';
 import TodoEdit from './TodoEdit';
 
@@ -13,16 +14,16 @@ function TodoList2({value, setValue}) {
     const [edit, setEdit] = useState(false);
     const [detail,setDetail] = useState(false);
     const [detailTodo, setDetailTodo] = useState('');
-    const [preValue, setPreValue] = useState(value);
+    // const [preValue, setPreValue] = useState(value);
     
-    useEffect(()=>{
-      for(let i = 0; i<value.length;i++){
-        projectFirestore.collection("todos").doc(value[i].id).update({
-        index:preValue[i].index,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[preValue])
+    // useEffect(()=>{
+    //   for(let i = 0; i<value.length;i++){
+    //     projectFirestore.collection("todos").doc(value[i].id).update({
+    //     index:preValue[i].index,
+    //   });
+    // }
+    // // eslint-disable-next-line react-hooks/exhaustive-deps
+    // },[preValue])
 
     
 
@@ -31,8 +32,13 @@ function TodoList2({value, setValue}) {
       const items = Array.from(value);
       const [reorderedItem] = items.splice(result.source.index, 1);
       items.splice(result.destination.index, 0, reorderedItem);
-      setPreValue(value)
+      // setPreValue(value)
       setValue(items);
+      for(let i = 0; i<items.length;i++){
+        projectFirestore.collection("todos").doc(items[i].id).update({
+        index:value[i].index,
+      });
+    }
     }
     
   function handleDone(id,status){
