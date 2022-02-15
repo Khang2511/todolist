@@ -10,7 +10,7 @@ function TodoAll({show,sortBy,setSortBy,direction,filterBy,filter,setTodos,todos
     useEffect(()=>{
         let todos = getTodos();
         return ()=> todos;
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       },[show,sortBy,direction,filterBy])
 
       function getTodos(){
@@ -103,7 +103,6 @@ function TodoAll({show,sortBy,setSortBy,direction,filterBy,filter,setTodos,todos
           }
         )
       )
-          
     )
     projectFirestore
             .collection("todos")
@@ -133,6 +132,10 @@ function TodoAll({show,sortBy,setSortBy,direction,filterBy,filter,setTodos,todos
       setTodos={setTodos}
       sortBy={sortBy}
       setSortBy={setSortBy}
+      direction={direction}
+      show={show}
+      filter={filter}
+      filterBy={filterBy}
       />
   )
 }

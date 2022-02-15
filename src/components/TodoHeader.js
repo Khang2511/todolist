@@ -19,11 +19,9 @@ function TodoHeader() {
     }
     function handleFilter(status){
         if(status!=="All"){
-            
             setFilter(true)
         }
         else
-        
             setFilter(false)
             setFilterBy(status)
       }

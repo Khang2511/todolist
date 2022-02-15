@@ -1,7 +1,7 @@
 import React from 'react';
 import '../css/listStyle/style.css'
 import {useState} from 'react'
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import { projectFirestore } from '../firebase/config';
 import TodoEdit from './TodoEdit';
 
@@ -9,21 +9,113 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import TodoDetail from './TodoDetail';
 
 
-function TodoList2({value, setValue}) {
+function TodoList2({value, setValue,sortBy,direction,show,filter,filterBy}) {
     const [editTodo, setEditTodo] = useState('');
     const [edit, setEdit] = useState(false);
     const [detail,setDetail] = useState(false);
     const [detailTodo, setDetailTodo] = useState('');
-    // const [preValue, setPreValue] = useState(value);
-    
-    // useEffect(()=>{
-    //   for(let i = 0; i<value.length;i++){
-    //     projectFirestore.collection("todos").doc(value[i].id).update({
-    //     index:preValue[i].index,
-    //   });
-    // }
-    // // eslint-disable-next-line react-hooks/exhaustive-deps
-    // },[preValue])
+
+    const [preValue, setPreValue] = useState(value);
+
+
+    useEffect(()=>{
+      for(let i = 0; i<value.length;i++){
+        projectFirestore.collection("todos").doc(value[i].id).update({
+        index:preValue[i].index,
+      });
+    }
+    show?
+    (
+      filter && filterBy!=="All" ?
+      projectFirestore
+          .collection("todos")
+            .orderBy(sortBy,direction)
+              .onSnapshot(function(querySnapshot){
+          setValue(querySnapshot.docs.map((doc)=>(
+            {
+              index:doc.data().index,
+              id: doc.id,
+              Deadline: doc.data().Deadline,
+              Name: doc.data().Name,
+              Desc: doc.data().Desc,
+              Priority: doc.data().Priority,
+              Status: doc.data().Status,
+            }
+          )
+          )
+          .filter((task)=>
+          task.Status!=="Done")
+          .filter((task)=>
+          task.Status===filterBy)
+          )
+        }
+      )
+      :
+      projectFirestore
+          .collection("todos")
+            .orderBy(sortBy,direction)
+              .onSnapshot(function(querySnapshot){
+          setValue(querySnapshot.docs.map((doc)=>(
+            {
+              index:doc.data().index,
+              id: doc.id,
+              Deadline: doc.data().Deadline,
+              Name: doc.data().Name,
+              Desc: doc.data().Desc,
+              Priority: doc.data().Priority,
+              Status: doc.data().Status,
+            }
+          )).filter((task)=>
+          task.Status!=="Done")
+          )
+        }
+      )
+    )
+    :
+    (
+      filter && filterBy!=="All" ?
+      projectFirestore
+          .collection("todos")
+            .orderBy(sortBy,direction)
+              .onSnapshot(function(querySnapshot){
+          setValue(querySnapshot.docs.map((doc)=>(
+            {
+              index:doc.data().index,
+              id: doc.id,
+              Deadline: doc.data().Deadline,
+              Name: doc.data().Name,
+              Desc: doc.data().Desc,
+              Priority: doc.data().Priority,
+              Status: doc.data().Status,
+            }
+          )).filter((task)=>
+          task.Status===filterBy)
+          )
+        }
+      )
+      :
+      (
+        projectFirestore
+            .collection("todos")
+              .orderBy(sortBy,direction)
+                .onSnapshot(function(querySnapshot){
+            setValue(querySnapshot.docs.map((doc)=>(
+              {
+                index:doc.data().index,
+                id: doc.id,
+                Deadline: doc.data().Deadline,
+                Name: doc.data().Name,
+                Desc: doc.data().Desc,
+                Priority: doc.data().Priority,
+                Status: doc.data().Status,
+              }
+            ))) 
+          }
+        )
+      )
+    )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[preValue])
 
     
 
@@ -32,13 +124,17 @@ function TodoList2({value, setValue}) {
       const items = Array.from(value);
       const [reorderedItem] = items.splice(result.source.index, 1);
       items.splice(result.destination.index, 0, reorderedItem);
-      // setPreValue(value)
+      setPreValue(value)
       setValue(items);
-      for(let i = 0; i<items.length;i++){
-        projectFirestore.collection("todos").doc(items[i].id).update({
-        index:value[i].index,
-      });
-    }
+      
+    //   for(let i = 0; i<items.length;i++){
+    //     console.log(items[i])
+    //   console.log(value[i])
+    //     projectFirestore.collection("todos").doc(items[i].id).update({
+    //     index:value[i].index,
+    //   });
+    // }
+    
     }
     
   function handleDone(id,status){
@@ -69,7 +165,7 @@ function TodoList2({value, setValue}) {
       projectFirestore.collection("todos").doc(id).delete();
     } 
   }
-
+  console.log(value)
   return (
     <div className='todolist'>
         <DragDropContext onDragEnd={handleOnDragEnd}>

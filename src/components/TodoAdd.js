@@ -29,8 +29,10 @@ function TodoAdd({setAdd, todos}) {
       for(let i =0; i<todos.length;i++){
         if(index<=todos[i].index){
          index = todos[i].index+1
+         console.log(index)
         }
       }
+      console.log(index)
 
       if (todoName!== "") {
         projectFirestore.collection("todos").add({
@@ -82,6 +84,7 @@ function TodoAdd({setAdd, todos}) {
         return null;
     }
   }
+
   return (
       <div className='todoadd'>
           <div className="todoadd__form">
