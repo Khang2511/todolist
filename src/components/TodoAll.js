@@ -33,9 +33,9 @@ function TodoAll({show,sortBy,setSortBy,direction,filterBy,filter,setTodos,todos
           )
           )
           .filter((task)=>
-          task.Status!="Done")
+          task.Status!=="Done")
           .filter((task)=>
-          task.Status==filterBy)
+          task.Status===filterBy)
           )
         }
       )
@@ -55,14 +55,14 @@ function TodoAll({show,sortBy,setSortBy,direction,filterBy,filter,setTodos,todos
               Status: doc.data().Status,
             }
           )).filter((task)=>
-          task.Status!="Done")
+          task.Status!=="Done")
           )
         }
       )
     )
     :
     (
-      filter && filterBy!="All" ?
+      filter && filterBy!=="All" ?
       projectFirestore
           .collection("todos")
             .orderBy(sortBy,direction)
@@ -78,7 +78,7 @@ function TodoAll({show,sortBy,setSortBy,direction,filterBy,filter,setTodos,todos
               Status: doc.data().Status,
             }
           )).filter((task)=>
-          task.Status==filterBy)
+          task.Status===filterBy)
           )
         }
       )

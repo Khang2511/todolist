@@ -62,25 +62,22 @@ function TodoAdd({setAdd, todos}) {
   function handlePriority(priority){
     setTodoPriority(priority)
     switch(priority){
-      case "Low":{
+      case "Low":
         setLevel('1')
-      };
       break;
 
-      case "Medium":{
+      case "Medium":
         setLevel('2')
-      };
       break;
 
-      case "High":{
+      case "High":
         setLevel('3')
-      };
       break;
 
-      case "Critical":{
+      case "Critical":
         setLevel('4')
-      };
       break;
+      
       default:
         return null;
     }

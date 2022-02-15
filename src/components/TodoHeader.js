@@ -18,7 +18,7 @@ function TodoHeader() {
       setShow(!show)
     }
     function handleFilter(status){
-        if(status!="All"){
+        if(status!=="All"){
             
             setFilter(true)
         }
