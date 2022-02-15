@@ -115,7 +115,7 @@ function TodoList2({value, setValue,sortBy,direction,show,filter,filterBy}) {
       )
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[preValue])
+    },[])
 
     
 
