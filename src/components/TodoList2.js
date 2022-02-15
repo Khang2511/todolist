@@ -21,6 +21,7 @@ function TodoList2({value, setValue}) {
         index:preValue[i].index,
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[preValue])
 
     

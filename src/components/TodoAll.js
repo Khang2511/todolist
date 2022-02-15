@@ -10,6 +10,7 @@ function TodoAll({show,sortBy,setSortBy,direction,filterBy,filter,setTodos,todos
     useEffect(()=>{
         let todos = getTodos();
         return ()=> todos;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
       },[show,sortBy,direction,filterBy])
 
       function getTodos(){
