@@ -120,12 +120,17 @@ function TodoList2({value, setValue,sortBy,direction,show,filter,filterBy}) {
     
 
   function handleOnDragEnd(result) {
-    if (!result.destination) return;
-      const items = Array.from(value);
-      const [reorderedItem] = items.splice(result.source.index, 1);
-      items.splice(result.destination.index, 0, reorderedItem);
-      setPreValue(value)
-      setValue(items);
+    if(sortBy === "index"){
+
+      if (!result.destination) return;
+        const items = Array.from(value);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+        setPreValue(value)
+        setValue(items);
+    }
+    else
+        alert("Please unsort before drag an item");
       
     //   for(let i = 0; i<items.length;i++){
     //     console.log(items[i])
