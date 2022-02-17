@@ -80,7 +80,7 @@ function reportWindowSize() {
                     <option value="All" >All</option>
                     
                     <option value="Pending">Pending</option>
-                    <option value="Inprogress">In progress</option>
+                    <option value="In progress">In progress</option>
                     <option value="Delayed">Delayed</option>
                     <option value="Done">Done</option>
                 </select>
@@ -135,7 +135,7 @@ function reportWindowSize() {
                         <option value="All" >All</option>
                         <option value="Not started" >Not started</option>
                         <option value="Pending">Pending</option>
-                        <option value="Inprogress">In progress</option>
+                        <option value="In progress">In progress</option>
                         <option value="Delayed">Delayed</option>
                         <option value="Done">Done</option>
                     </select>

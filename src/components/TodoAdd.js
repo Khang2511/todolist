@@ -29,10 +29,8 @@ function TodoAdd({setAdd, todos}) {
       for(let i =0; i<todos.length;i++){
         if(index<=todos[i].index){
          index = todos[i].index+1
-         console.log(index)
         }
       }
-      console.log(index)
 
       if (todoName!== "" && 
           todoDesc!== "" && 
@@ -42,7 +40,7 @@ function TodoAdd({setAdd, todos}) {
         projectFirestore.collection("todos").add({
           index:index ,
           id:Math.random(),
-          Deadline: todoDeadline,
+          Deadline: todoDeadline.split("T").join(" "),
           Name: todoName,
           Desc: todoDesc,
           Priority: todoPriority,

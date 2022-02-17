@@ -16,10 +16,14 @@ function TodoList2({value, setValue,sortBy,direction,show,filter,filterBy}) {
     const [detailTodo, setDetailTodo] = useState('');
 
     const [preValue, setPreValue] = useState(value);
-
-
+    const DateNow = Date.now(); // 1602710690936
     useEffect(()=>{
       for(let i = 0; i<value.length;i++){
+        // if(Date.now()> parseInt((new Date(preValue[i].Deadline).getTime() / 1000).toFixed(0))){
+        //   return "delayed"
+        // }
+        console.log(parseInt((new Date(preValue[i].Deadline).getTime() / 1000).toFixed(0)))
+        console.log(parseInt((new Date(Date(DateNow)).getTime() / 1000).toFixed(0)))
         projectFirestore.collection("todos").doc(value[i].id).update({
         index:preValue[i].index,
       });
@@ -132,14 +136,7 @@ function TodoList2({value, setValue,sortBy,direction,show,filter,filterBy}) {
     else
         alert("Please unsort before drag an item");
       
-    //   for(let i = 0; i<items.length;i++){
-    //     console.log(items[i])
-    //   console.log(value[i])
-    //     projectFirestore.collection("todos").doc(items[i].id).update({
-    //     index:value[i].index,
-    //   });
-    // }
-    
+
     }
     
   function handleDone(id,status){
@@ -170,7 +167,6 @@ function TodoList2({value, setValue,sortBy,direction,show,filter,filterBy}) {
       projectFirestore.collection("todos").doc(id).delete();
     } 
   }
-  console.log(value)
   return (
     <div className='todolist'>
         <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -191,6 +187,14 @@ function TodoList2({value, setValue,sortBy,direction,show,filter,filterBy}) {
                         {...provided.draggableProps} 
                         {...provided.dragHandleProps}>
                           <li className= {(() => {
+                            if(parseInt((new Date(Date(DateNow)).getTime() / 1000).toFixed(0))>parseInt((new Date(todo.Deadline).getTime() / 1000).toFixed(0))){
+                              todo.Status = "delayed"
+                              projectFirestore.collection("todos").doc(todo.id).update({
+                                Status: "Delayed",
+                              });
+                              return "list delayed"
+                            }
+                            else{
                         switch (todo.Status) {
                           case 'Not started':
                             return "list not_started";
@@ -204,7 +208,7 @@ function TodoList2({value, setValue,sortBy,direction,show,filter,filterBy}) {
                             return "list done" ;
                           default:
                             return null;
-                        }
+                        }}
                       })()}>
                          <i className={
                            todo.Status === "Done" ? 
@@ -221,20 +225,28 @@ function TodoList2({value, setValue,sortBy,direction,show,filter,filterBy}) {
                               </div>
                                 <div className='item__status'>
                                   <p className={(() => {
-                                  switch (todo.Status) {
-                                    case 'Not started':
-                                      return "not_started";
-                                    case 'Pending':
-                                      return "pending" ;
-                                    case 'In progress':
-                                      return "inprogress";
-                                    case 'Delayed':
-                                      return "delayed";  
-                                    case 'Done':
-                                      return "done" ;
-                                    default:
-                                      return null;
-                                  }
+                                    if(parseInt((new Date(Date(DateNow)).getTime() / 1000).toFixed(0))>parseInt((new Date(todo.Deadline).getTime() / 1000).toFixed(0))){
+                                      todo.Status = "delayed"
+                                      return "delayed"
+                                    }
+                                    else{
+
+                                      switch (todo.Status) {
+                                        case 'Not started':
+                                          return "not_started";
+                                        case 'Pending':
+                                          return "pending" ;
+                                        case 'In progress':
+                                          return "inprogress";
+                                        case 'Delayed':
+                                          return "delayed";  
+                                        case 'Done':
+                                          return "done" ;
+                                        default:
+                                          return null;
+                                      }
+                                    }
+
                                 })()}>{todo.Status}</p>
                                 </div>
                                 <div className='item__priority'>
