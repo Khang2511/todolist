@@ -6,7 +6,16 @@ import { projectFirestore } from '../firebase/config';
 
 
 function TodoAll({show,sortBy,setSortBy,direction,filterBy,filter,setTodos,todos}) {
-    const[value, setValue]=useState([]);
+  
+  const[value, setValue]=useState([]);
+// projectFirestore.collection("todos").get().then((snapshot)=>{
+// //   snapshot.docs.forEach(doc =>{
+// //     console.log(doc.data())
+// //     value.push(doc.data)
+// //   })
+// // })
+
+
     useEffect(()=>{
         let todos = getTodos();
         return ()=> todos;

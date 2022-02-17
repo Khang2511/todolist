@@ -34,7 +34,11 @@ function TodoAdd({setAdd, todos}) {
       }
       console.log(index)
 
-      if (todoName!== "") {
+      if (todoName!== "" && 
+          todoDesc!== "" && 
+          todoStatus!== "" && 
+          todoPriority!== "" && 
+          todoDeadline!== "") {
         projectFirestore.collection("todos").add({
           index:index ,
           id:Math.random(),
@@ -48,12 +52,16 @@ function TodoAdd({setAdd, todos}) {
         });
         setAdd(false)
         setChange(!change)
+        setTodoName('');
+        setTodoDeadline('');
+        setTodoDesc('');
+        setTodoPriority('');
+        setTodoStatus('');
       }
-      setTodoName('');
-      setTodoDeadline('');
-      setTodoDesc('');
-      setTodoPriority('');
-      setTodoStatus('');
+      else
+        alert('Missing detail , please check again!')
+
+     
       
     }
 
@@ -96,10 +104,12 @@ function TodoAdd({setAdd, todos}) {
                         <input id="name" type="text" name="name" required onChange={(e) => {
                           setTodoName(e.target.value)
                           }}/>
+                          
                     </div>
                     <div className="infor__desc">
                         <label htmlFor="desciption">Description</label>
-                        <textarea id="instructions" rows="3" onChange={(e) => {
+                        <textarea id="instructions" rows="3" required
+                         onChange={(e) => {
                           setTodoDesc(e.target.value)
                           }}></textarea>
                     </div>
@@ -140,7 +150,7 @@ function TodoAdd({setAdd, todos}) {
                     </div>
                     
                     <div className="infor__btn">
-                        <button onClick={addTodo}>Add</button>
+                        <button onClick={addTodo}  >Add</button>
                         <button onClick={handleCancel} >Cancel</button>
                     </div>
                 </form>

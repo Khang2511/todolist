@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import '../css/responsiveStyle/responsive.css'
 import '../css/headerStyle/style.css'
+
 import TodoAdd from './TodoAdd';
 import TodoAll from './TodoAll';
 function TodoHeader() {
@@ -10,6 +12,13 @@ function TodoHeader() {
     const [filterBy, setFilterBy] = useState("")
     const [filter, setFilter] = useState(false)
     const [todos,setTodos] = useState([])
+    const [size,setSize] = useState(window.innerWidth)
+
+function reportWindowSize() {
+     const w = window.innerWidth;
+    setSize(w)
+}
+    window.addEventListener('resize', reportWindowSize);
     function handleAdd(){
         setAdd(true);
     }
@@ -43,6 +52,7 @@ function TodoHeader() {
   return (
     <div className='todoheader'>
       <h1>Todo-List</h1>
+      
         <ul className='todoheader__function'>
             <li className='function__show'>
                 <input 
@@ -58,7 +68,48 @@ function TodoHeader() {
             </li>
             {add? <TodoAdd setAdd={setAdd} todos={todos} /> : ''}
         </ul>
-        <ul className='todolist__tag'>
+        {
+          size <= '739' ?
+          <ul className='todolist__tag'>
+            <li className='header__tag'>
+                <p>Filter</p>
+                <select 
+                    defaultValue={'All'} onChange={(e) => {
+                    handleFilter(e.target.value)}}
+                >
+                    <option value="All" >All</option>
+                    
+                    <option value="Pending">Pending</option>
+                    <option value="Inprogress">In progress</option>
+                    <option value="Delayed">Delayed</option>
+                    <option value="Done">Done</option>
+                </select>
+            </li>
+            <li className=' header__tag'>
+                <p>Sort by</p>
+                <select 
+                    defaultValue={'Name'} onChange={(e) => {
+                        setSortBy(e.target.value)}}
+                >
+                    <option value='index'>Unsort</option>
+                    <option value="Name" >Name</option>
+                    <option value="Level" >Priority</option>
+                    <option value="Deadline">Deadline</option>
+                </select>
+            </li>
+            <li className='header__tag'>
+                <p>Direction</p>
+                <select 
+                defaultValue={'desc'}
+                onChange={(e)=>setDirection(e.target.value)}
+                >
+                    <option value='desc'> &#xf161;</option>
+                    <option value='asc'> &#xf160;</option>
+                </select>
+          </li>
+        </ul>
+          :
+          <ul className='todolist__tag'>
           <li className='tag__name header__tag'>
               
             <p>
@@ -68,9 +119,9 @@ function TodoHeader() {
                 defaultValue={'none'}
                 onChange={(e)=>handleSort("Name",e.target.value)}
                 >
-                <option value='none'>Not selected</option>
-                <option value='asc'>Ascending &#xf160;</option>
-                <option value='desc'>Descending &#xf161;</option>
+                <option value='none'>Unsort</option>
+                <option value='asc'> &#xf160;</option>
+                <option value='desc'> &#xf161;</option>
                 </select>
           </li>
           <li className='tag__status header__tag'>
@@ -84,7 +135,7 @@ function TodoHeader() {
                         <option value="All" >All</option>
                         <option value="Not started" >Not started</option>
                         <option value="Pending">Pending</option>
-                        <option value="In progress">In progress</option>
+                        <option value="Inprogress">In progress</option>
                         <option value="Delayed">Delayed</option>
                         <option value="Done">Done</option>
                     </select>
@@ -96,10 +147,9 @@ function TodoHeader() {
                     defaultValue={'none'}
                     onChange={(e)=>handleSort("Level",e.target.value)}
                     >
-                    <option value="DEFAULT" disabled ></option>
-                    <option value='none'>Not selected</option>
-                    <option value='asc'>Ascending &#xf160;</option>
-                    <option value='desc'>Descending &#xf161;</option>
+                    <option value='none'>Unsort</option>
+                    <option value='asc'> &#xf160;</option>
+                    <option value='desc'> &#xf161;</option>
                 </select>
           </li>
           <li className='tag__deadline header__tag'>
@@ -109,12 +159,14 @@ function TodoHeader() {
                         defaultValue={'none'}
                         onChange={(e)=>handleSort("Deadline",e.target.value)}
                         >
-                        <option value='none'>Not selected</option>
-                        <option value='asc'>Ascending &#xf160;</option>
-                        <option value='desc'>Descending &#xf161;</option>
+                        <option value='none'>Unsort</option>
+                        <option value='asc'> &#xf160;</option>
+                        <option value='desc'> &#xf161;</option>
                     </select>
           </li>
         </ul>
+      }
+        
         <TodoAll 
             show={show}  
             sortBy={sortBy} 
