@@ -51,23 +51,27 @@ function reportWindowSize() {
 
   return (
     <div className='todoheader'>
-      <h1>Todo-List</h1>
-      
-        <ul className='todoheader__function'>
-            <li className='function__show'>
-                <input 
-                    type='checkbox' 
-                    onChange={handleShow}
-                    checked={show? true : false}
-                />
-                <label>Show incomplete task only</label>
-                
-            </li>
-            <li className='function__add'>
-                <button onClick={handleAdd}>+ Add task</button>
-            </li>
-            {add? <TodoAdd setAdd={setAdd} todos={todos} /> : ''}
-        </ul>
+        <div className='header'>
+            <h1>Todo-List</h1>
+            <ul className='header__function'>
+                <li className='function__show'>
+                    <input 
+                        type='checkbox' 
+                        onChange={handleShow}
+                        checked={show? true : false}
+                    />
+                    <label>Show incomplete task only</label>
+                    
+                </li>
+
+                <li className='function__add'>
+                    <button onClick={handleAdd}>+ Add task</button>
+                </li>
+                {add? <TodoAdd setAdd={setAdd} todos={todos} /> : ''}
+            </ul>
+        </div>
+        <div className='list'>
+
         {
           size <= '739' ?
           <ul className='todolist__tag'>
@@ -177,6 +181,7 @@ function reportWindowSize() {
             setTodos={setTodos}
             todos={todos}
             />
+        </div>
     </div>
     )
 }

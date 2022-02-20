@@ -9,6 +9,7 @@
         grid-gap: 1rem;
         grid-template-columns: 4fr 2fr 2fr 1fr;
         justify-items: center;
+        text-align: center;
 
         .header__tag{
             p{
@@ -71,6 +72,7 @@
                 border-radius: 50px;
                 background-color: #fff;
                 width: 100%;
+                text-align: center;
                 .item{
                     display: flex;
                     padding: 10px;
@@ -239,7 +241,7 @@
 
                     .item{
                         &__priority{
-                            margin-left: 5%;
+                            margin-left: 0%;
                             width: 15%;
                         }
 

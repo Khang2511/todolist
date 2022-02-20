@@ -13,6 +13,7 @@
   -ms-grid-columns: 4fr 2fr 2fr 1fr;
       grid-template-columns: 4fr 2fr 2fr 1fr;
   justify-items: center;
+  text-align: center;
 }
 
 .todolist .todolist__tag .header__tag p i {
@@ -68,6 +69,7 @@
   border-radius: 50px;
   background-color: #fff;
   width: 100%;
+  text-align: center;
 }
 
 .todolist .todolist__list .list__item .item {
@@ -222,7 +224,7 @@
     width: 90%;
   }
   .todolist .todolist__list .list__item .item__priority {
-    margin-left: 5%;
+    margin-left: 0%;
     width: 15%;
   }
 }

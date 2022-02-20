@@ -1,53 +1,123 @@
+@charset "UTF-8";
 .todoheader {
   padding: 25px;
   margin: 25px;
 }
 
-.todoheader .todolist__tag {
-  display: -ms-grid;
-  display: grid;
-  margin: auto;
-  width: 70%;
-  -ms-grid-columns: 2fr 1fr 1fr 2fr;
-      grid-template-columns: 2fr 1fr 1fr 2fr;
+.todoheader .header {
+  background-color: #FF99FF;
+  border-radius: 25px 25px 0px 0px;
+  padding: 25px;
+  border: 2px solid #e704b6;
 }
 
-.todoheader .todolist__tag .header__tag p i {
-  cursor: pointer;
+.todoheader .header h1 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 60px;
+  color: #fff;
 }
 
-.todoheader .todolist__tag .tag__status {
-  margin-left: 5%;
-}
-
-.todoheader .todolist__tag .tag__priority {
-  margin-left: -15%;
-}
-
-.todoheader .todolist__tag .tag__deadline {
-  margin-left: -5%;
-}
-
-.todoheader h1 {
-  font-size: 30px;
-  margin: 10px;
-}
-
-.todoheader__function {
+.todoheader .header__function {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  border-bottom: 2px solid bisque;
   padding: 20px;
-  margin: 20px;
+  margin: auto;
+  width: 80%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
-.todoheader__function .function__add button {
+.todoheader .header__function .function__show input {
+  cursor: pointer;
+}
+
+.todoheader .header__function .function__add button {
   background-color: #fff;
   border-radius: 25px;
+  cursor: pointer;
+}
+
+.todoheader .header__function .function__add button:hover {
+  opacity: 0.5px;
+  background-color: #FFCCFF;
+}
+
+.todoheader .list {
+  background-color: #FFCCFF;
+  border-radius: 0px 0px 25px 25px;
+  border: 2px solid #e704b6;
+  padding: 15px;
+  text-align: center;
+}
+
+.todoheader .list .todolist__tag {
+  display: -ms-grid;
+  display: grid;
+  margin-left: 15%;
+  width: 61%;
+  -ms-grid-columns: 2fr 1fr 1fr 2fr;
+      grid-template-columns: 2fr 1fr 1fr 2fr;
+}
+
+.todoheader .list .todolist__tag select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background: #f4f4f5;
+  border: 2px solid #FF99FF;
+  border-radius: 25px;
+  padding: 10px;
+  color: black;
+  cursor: pointer;
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+  text-align: center;
+  /* thiết kế dấu mũi tên */
+  /* Transition */
+}
+
+.todoheader .list .todolist__tag select select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0 1em;
+  background: DodgerBlue;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: .25s all ease;
+  transition: .25s all ease;
+  color: white;
+}
+
+.todoheader .list .todolist__tag select select:hover::after {
+  color: Gainsboro;
+}
+
+.todoheader .list .todolist__tag select option {
+  border-radius: 25px;
+}
+
+.todoheader .list .todolist__tag .header__tag p i {
+  cursor: pointer;
+}
+
+.todoheader .list .todolist__tag .tag__status {
+  margin-left: 15%;
+}
+
+.todoheader .list .todolist__tag .tag__deadline {
+  margin-left: -15%;
 }
 
 @font-face {
@@ -91,23 +161,23 @@ select {
 }
 
 /* Tablet */
-@media only screen and (min-width: 740px) and (max-width: 1023px) {
+@media only screen and (min-width: 740px) and (max-width: 1024px) {
   .todoheader {
     padding: 0px;
   }
-  .todoheader .todolist__tag {
-    width: 100%;
+  .todoheader .list .todolist__tag {
+    width: 65%;
   }
-  .todoheader .todolist__tag .tag__name {
+  .todoheader .list .todolist__tag .tag__name {
     text-align: center;
   }
-  .todoheader .todolist__tag .tag__status {
+  .todoheader .list .todolist__tag .tag__status {
     margin-left: 0%;
   }
-  .todoheader .todolist__tag .tag__priority {
+  .todoheader .list .todolist__tag .tag__priority {
     margin-left: 0%;
   }
-  .todoheader .todolist__tag .tag__deadline {
+  .todoheader .list .todolist__tag .tag__deadline {
     margin-left: 0%;
   }
 }

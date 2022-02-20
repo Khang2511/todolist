@@ -1,51 +1,120 @@
 .todoheader{
     padding: 25px;
     margin: 25px;
-    .todolist__tag{
-        display: grid;
-        margin: auto;
-        width: 70%;
-        grid-template-columns: 2fr 1fr 1fr 2fr;
-
-        .header__tag{
-            p{
-                i{
+    .header{
+        background-color:  #FF99FF;
+        border-radius: 25px 25px 0px 0px;
+        padding: 25px;
+        border: 2px solid rgb(231, 4, 182);
+        h1{
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 60px;
+            color: #fff;
+        }
+        &__function{
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin: auto;
+            width: 80%;
+            justify-content: space-around;
+            
+            .function__show{
+                input{
                     cursor: pointer;
                 }
             }
-        }
-
-        .tag__status{
-            margin-left: 5%;
-        }
-        .tag__priority{
-            margin-left: -15%;
-        }
-        .tag__deadline{
-            margin-left: -5%;
-        }
-
-    }
-
-    h1{
-        font-size: 30px;
-        margin: 10px;
-    }
-
-    &__function{
-        display: flex;
-        justify-content: space-between;
-        border-bottom: 2px solid bisque;
-        padding: 20px;
-        margin: 20px;
-
-        .function__add{
-            button{
-                background-color: #fff;
-                border-radius: 25px;
+            .function__add{
+                button{
+                    background-color: #fff;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    &:hover{
+                        opacity: 0.5px;
+                        background-color: #FFCCFF;
+                    }
+                }
             }
+            
+        }
+        
+    }
+    .list{
+        background-color: #FFCCFF;
+        border-radius: 0px 0px 25px 25px;
+        border: 2px solid rgb(231, 4, 182);
+        padding: 15px;
+        text-align: center;
+        .todolist__tag{
+            display: grid;
+            margin-left: 15%;
+            width: 61%;
+            grid-template-columns: 2fr 1fr 1fr 2fr;
+            select {
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                -ms-appearance: none;
+                appearance: none;
+                outline: 0;
+                box-shadow: none;
+                background: rgb(244, 244, 245);
+                border: 2px solid #FF99FF;
+                border-radius: 25px;
+                padding: 10px;
+                color: rgb(0, 0, 0);
+                cursor: pointer;
+                position: relative;
+                background: #fff;
+                overflow: hidden;
+                text-align: center;
+                 /* thiết kế dấu mũi tên */
+              select::after {
+                content: '\25BC';
+                position: absolute;
+                top: 0;
+                right: 0;
+                padding: 0 1em;
+                background: DodgerBlue;
+                cursor: pointer;
+                pointer-events: none;
+                -webkit-transition: .25s all ease;
+                -o-transition: .25s all ease;
+                transition: .25s all ease;
+                color: white;
+              }
+              /* Transition */
+              select:hover::after {
+                color: Gainsboro;
+              }
+              option{
+                  border-radius: 25px;
+              }
+            }
+
+             
+              
+            .header__tag{
+                p{
+                    i{
+                        cursor: pointer;
+                    }
+                }
+            }
+    
+            .tag__status{
+                margin-left: 15%;
+            }
+            .tag__priority{
+                // margin-left: -15%;
+            }
+            .tag__deadline{
+                margin-left: -15%;
+            }
+    
         }
     }
+   
 }
 @font-face {
     font-family: "FontAwesome";
@@ -93,24 +162,27 @@ select {
 }
 
 /* Tablet */
-@media only screen and (min-width : 740px) and (max-width : 1023px) {
+@media only screen and (min-width : 740px) and (max-width : 1024px) {
 .todoheader{
     padding: 0px;
-        .todolist__tag{
-            width: 100%;
-            .tag__name{
-                text-align: center;
+        .list{
+
+            .todolist__tag{
+                width: 65%;
+                .tag__name{
+                    text-align: center;
+                }
+                .tag__status{
+                    margin-left: 0%;
+                }
+                .tag__priority{
+                    margin-left: 0%;
+                }
+                .tag__deadline{
+                    margin-left:0%;
+                }
+        
             }
-            .tag__status{
-                margin-left: 0%;
-            }
-            .tag__priority{
-                margin-left: 0%;
-            }
-            .tag__deadline{
-                margin-left:0%;
-            }
-    
         }
     }
 }
