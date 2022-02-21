@@ -64,11 +64,13 @@
                 padding: 10px;
                 color: rgb(0, 0, 0);
                 cursor: pointer;
-                position: relative;
+
                 background: #fff;
                 overflow: hidden;
                 text-align: center;
+
                  /* thiết kế dấu mũi tên */
+
               select::after {
                 content: '\25BC';
                 position: absolute;
@@ -104,9 +106,6 @@
     
             .tag__status{
                 margin-left: 15%;
-            }
-            .tag__priority{
-                // margin-left: -15%;
             }
             .tag__deadline{
                 margin-left: -15%;
