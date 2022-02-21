@@ -2,6 +2,8 @@
   padding: 10px 50px;
   width: 80%;
   margin: auto;
+  overflow: auto;
+  height: 100vh;
 }
 
 .todolist .todolist__tag {
